@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsers - Signin</title>
+    <link rel="stylesheet" href="index.css" />
+    <script type="module" src="index.js"></script>
+</head>
+<body>
+    <div id="main_container">
+        <div id="home_container">
+            <div id="upper_container">
+                <div id="menu_btn_container">
+                    <img src="assets/images/icons/menu-icon-reg.png" id="menu_btn">
+                    <a id="admin_lbl">Admin</a>
+                </div>
+            </div>
+            <div id="functions_container">
+                <div class="options_container">
+                    <button class="menu_container menu_border" onclick="reviewreports()">
+                        <label>Review Reports</label>
+                    </button>
+                    <button class="menu1_container menu_border" onclick="reviewqueries()">
+                        <label>Review Queries</label>
+                    </button>
+                </div>
+                <div class="options_container">
+                    <button class="menu2_container menu_border" onclick="addadmin()">
+                        <label>Add Admin</label>
+                    </button>
+                    <button class="menu3_container menu_border" onclick="addstudent()">
+                        <label>Add Student</label>
+                    </button>  
+                </div>
+                <div class="options_container">
+                    <button class="menu2_container menu_border">
+                       <label>Deactivate Account</label>
+                    </button>
+                    <button class="menu5_container menu_border">
+                        <label>Delete Account</label>
+                    </button>  
+                </div>
+                
+            </div>
+            <div id="reviewreports_container">
+
+            </div>
+            <div id="reviewqueries_container">
+
+            </div>
+            <div id="addadmin_container">
+
+            </div>
+            <div id="addstudent_container">
+                <input id="id_txt" class="txtinput" placeholder="Enter Student Identification">
+                <input id="email_txt" class="txtinput" placeholder="Enter Email Address">
+                <input id="fullname_txt" class="txtinput" placeholder="Enter Full Name">
+                <button id="addstudent_btn" class="next_btn">Add Student</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="index_events.js"></script>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Teacher</title>
+</head>
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+    #txt_studentid, #txt_studentemail, #txt_firstname, #txt_middlename, #txt_lastname, #txt_suffix{
+        margin-bottom: 5px;
+    }
+</style>
+<body>
+    <a>Add A Teacher</a>
+    <input type="text" id="txt_studentid" placeholder="Enter ID">
+    <input type="text" id="txt_studentemail" placeholder="Enter Email">
+    <input type="text" id="txt_firstname" placeholder="Enter First Name">
+    <input type="text" id="txt_middlename" placeholder="Enter Middle Name">
+    <input type="text" id="txt_lastname" placeholder="Enter Last Name">
+    <input type="text" id="txt_suffix" placeholder="Enter Suffix">
+    <button id="addstudent">Add Teacher</button>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+    import { getDatabase, set, ref, get, child } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCFqgbA_t3EBVO21nW70umJOHX3UdRr9MY",
+      authDomain: "parseit-8021e.firebaseapp.com",
+      databaseURL: "https://parseit-8021e-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "parseit-8021e",
+      storageBucket: "parseit-8021e.appspot.com",
+      messagingSenderId: "15166597986",
+      appId: "1:15166597986:web:04b0219b1733780ae61a3b"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    
+    function addData(studentid, email, firstname, middlename, lastname, suffix) {
+        set(ref(database, 'PARSEIT/administration/teachers/' + studentid), {
+        email: email,
+        firstname: firstname,
+        middlename: middlename,
+        lastname: lastname,
+        suffix: suffix
+    }).then(() => {
+        console.log("Data saved successfully!");
+    }).catch((error) => {
+        console.error("Error saving data: ", error);
+    });
+    }
+    function trimEmail(text) {
+        const emailDomain = '@gmail.com';
+        const index = text.indexOf(emailDomain);
+        if (index !== -1) {
+          return text.substring(0, index);
+        }
+        return text;
+      }
+    function addUserinfo(studentid, firstname, lastname, suffix, email){
+        const trimmedEmail = trimEmail(email);
+        set(ref(database, 'PARSEIT/userinfo/' + trimmedEmail), {
+            active: false,
+            fullname: firstname + " " + lastname +" "+ suffix, 
+            regular: "NA",
+            section: "NA",
+            studentid: studentid ,
+            type: "teacher",
+            year: 0,
+    }).then(() => {
+        console.log("Data saved successfully!");
+    }).catch((error) => {
+        console.error("Error saving data: ", error);
+    });
+    }
+document.getElementById('addstudent').addEventListener('click', (event)=>{
+    const studentid = document.getElementById('txt_studentid').value;
+    const email = document.getElementById('txt_studentemail').value;
+    const firstname = document.getElementById('txt_firstname').value;
+    const middlename = document.getElementById('txt_middlename').value;
+    const lastname = document.getElementById('txt_lastname').value;
+    const suffix = document.getElementById('txt_suffix').value;
+    addData(studentid, email, firstname, middlename, lastname, suffix);
+    addUserinfo(studentid, firstname, lastname, suffix, email);
+})
+</script>
+</html>

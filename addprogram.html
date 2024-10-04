@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Program</title>
+</head>
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+    #txt_lvl, #txt_sem, #txt_code, #txt_name, #txt_unit{
+        margin-bottom: 5px;
+    }
+</style>
+<body>
+    <a>Add Program</a>
+    <input type="text" id="txt_lvl" placeholder="Enter Year Level">
+    <input type="text" id="txt_sem" placeholder="Enter Semester">
+    <input type="text" id="txt_code" placeholder="Enter Subject Code">
+    <input type="text" id="txt_name" placeholder="Enter Subject Name">
+    <input type="text" id="txt_unit" placeholder="Enter Units">
+    <button id="addprogram">Add Program</button>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+    import { getDatabase, set, ref, get, child } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCFqgbA_t3EBVO21nW70umJOHX3UdRr9MY",
+      authDomain: "parseit-8021e.firebaseapp.com",
+      databaseURL: "https://parseit-8021e-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "parseit-8021e",
+      storageBucket: "parseit-8021e.appspot.com",
+      messagingSenderId: "15166597986",
+      appId: "1:15166597986:web:04b0219b1733780ae61a3b"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    
+    function addData(yearlvl, sem, code, name, unit) {
+        const year = "year-lvl-" + yearlvl;
+        const semester = sem + "-sem";
+        set(ref(database, 'PARSEIT/administration/programs/' + year + '/'+ semester +'/' + code), {
+        name: name,
+        unit: unit
+    }).then(() => {
+        console.log("Data saved successfully!");
+    }).catch((error) => {
+        console.error("Error saving data: ", error);
+    });
+    }
+document.getElementById('addprogram').addEventListener('click', (event)=>{
+    const yearlvl = document.getElementById('txt_lvl').value;
+    const sem = document.getElementById('txt_sem').value;
+    const code = document.getElementById('txt_code').value;
+    const name = document.getElementById('txt_name').value;
+    const unit = document.getElementById('txt_unit').value;
+    addData(yearlvl, sem, code, name, unit);
+})
+</script>
+</html>

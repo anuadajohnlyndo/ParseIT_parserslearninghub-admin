@@ -1,51 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Start Semester</title>
-</head>
-<style>
-    body{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:  flex-start;
-        height: 100vh;
-       
+  </head>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
     }
-    
-    .sem{
-        display: flex;
-        justify-content: flex-start;
-        align-items:  flex-start;
 
-        width: 100%;
+    .sem {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      width: 100%;
     }
-    
-</style>
-<body>
+  </style>
+  <body>
     <div class="sem">
-        <a>Select Semester:</a>
-        <div>
-            <input type="radio" id="sem1" name="semester" value="first-sem"><a>First Semester</a>
-            <input type="radio" id="sem2" name="semester" value="second-sem"><a>Second Semester</a>
-        </div>
+      <a>Select Semester:</a>
+      <div>
+        <input type="radio" id="sem1" name="semester" value="first-sem" /><a
+          >First Semester</a
+        >
+        <input type="radio" id="sem2" name="semester" value="second-sem" /><a
+          >Second Semester</a
+        >
+      </div>
+    </div>
     <div>
-    <div><a>Select Year Level: </a>
-        <input type="radio" id="year1" value="1" name="yearlvl">
-        <a>First Year</a>
-        <input type="radio" id="year2" name="yearlvl" value="2"><a>Second Year</a>
-        <input type="radio" id="year3" name="yearlvl" value="3"><a>Third Year</a>
-        <input type="radio" id="year4" name="yearlvl" value="4"><a>Fourth Year</a>
+      <a>Select Year Level: </a>
+      <input type="radio" id="year1" value="1" name="yearlvl" />
+      <a>First Year</a>
+      <input type="radio" id="year2" name="yearlvl" value="2" /><a
+        >Second Year</a
+      >
+      <input type="radio" id="year3" name="yearlvl" value="3" /><a
+        >Third Year</a
+      >
+      <input type="radio" id="year4" name="yearlvl" value="4" /><a
+        >Fourth Year</a
+      >
     </div>
     <div class="section">
-        <a>Select Section:</a>
-        <div id="sections_cont"></div>
-        <!-- <a>Assign Teacher:</a>
+      <a>Select Section:</a>
+      <div id="sections_cont"></div>
+      <!-- <a>Assign Teacher:</a>
         <div class="sections" id="teachers_const"><input type="radio" id="teachernum" name="teacher"><a>Teacher A</a></div> -->
-        <div id="enrolledstudents"></div>
-        <!-- <div class="schedule">
+      <div id="enrolledstudents"></div>
+      <!-- <div class="schedule">
             Assign Schedule:
             <input type="radio" id="mon" name="day" value="Monday"><a>Mon</a>
             <input type="radio" id="tue" name="day" value="Tuesday"><a>Tue</a>
@@ -59,28 +68,43 @@
             <input type="text" id="txtin" placeholder="Enter Time In">
             <input type="text" id="txtout" placeholder="Enter Time Out">
         </div> -->
-        <div class="sections"><input type="text" id="txtstudentid" placeholder="Enter Student ID"><button id="addtoclass">Enroll</button></div>
-        <button id="startsemester">Start Semester</button><button id="endsemester">End Semester</button>
+      <div class="sections">
+        <input
+          type="text"
+          id="txtstudentid"
+          placeholder="Enter Student ID"
+        /><button id="addtoclass">Enroll</button>
+      </div>
+      <button id="startsemester">Start Semester</button
+      ><button id="endsemester">End Semester</button>
     </div>
-</body>
-<script type="module">
+  </body>
+  <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-    import { getDatabase, set, ref, get, child, update} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+    import {
+      getDatabase,
+      set,
+      ref,
+      get,
+      child,
+      update,
+    } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
-  
+
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyCFqgbA_t3EBVO21nW70umJOHX3UdRr9MY",
       authDomain: "parseit-8021e.firebaseapp.com",
-      databaseURL: "https://parseit-8021e-default-rtdb.asia-southeast1.firebasedatabase.app",
+      databaseURL:
+        "https://parseit-8021e-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "parseit-8021e",
       storageBucket: "parseit-8021e.appspot.com",
       messagingSenderId: "15166597986",
-      appId: "1:15166597986:web:04b0219b1733780ae61a3b"
+      appId: "1:15166597986:web:04b0219b1733780ae61a3b",
     };
-  
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
@@ -88,108 +112,120 @@
     var semvalue = "";
 
     function getSem() {
-        const selectedOption = document.querySelector('input[name="semester"]:checked');
-        if (selectedOption) {
-            semvalue = selectedOption.value;
-        } else {
-            console.log('No option selected');
-        }
+      const selectedOption = document.querySelector(
+        'input[name="semester"]:checked'
+      );
+      if (selectedOption) {
+        semvalue = selectedOption.value;
+      } else {
+        console.log("No option selected");
+      }
     }
     function getYearLvl() {
-        const selectedOption = document.querySelector('input[name="yearlvl"]:checked');
-        if (selectedOption) {
-
-            yearvalue = "year-lvl-" + selectedOption.value;
-        } else {
-            console.log('No option selected');
-        }
+      const selectedOption = document.querySelector(
+        'input[name="yearlvl"]:checked'
+      );
+      if (selectedOption) {
+        yearvalue = "year-lvl-" + selectedOption.value;
+      } else {
+        console.log("No option selected");
+      }
     }
 
     var selectedSection = null;
     var selectedTeacher = null;
-    function getSection(){
-        const selectedOption = document.querySelector('input[name="section"]:checked');
-        if (selectedOption) {
-            selectedSection = selectedOption.id;
-            selectedTeacher = selectedOption.value;
-        } else {
-            console.log('No option selected');
-        }
+    function getSection() {
+      const selectedOption = document.querySelector(
+        'input[name="section"]:checked'
+      );
+      if (selectedOption) {
+        selectedSection = selectedOption.id;
+        selectedTeacher = selectedOption.value;
+      } else {
+        console.log("No option selected");
+      }
     }
-    
+
     function populateSections() {
-        const dbRef = ref(database);
-        const sections_cont = document.getElementById("sections_cont");
-        
-        get(child(dbRef, "PARSEIT/administration/sections/" + yearvalue)).then((snapshot) => {
-            if (snapshot.exists()) {
-                let htmlstring = "";
-                snapshot.forEach((childSnapshot) => {
-                    const sectioncode = childSnapshot.key;
-                    const sectionteacher = childSnapshot.val().teacher;
-                    htmlstring += `
+      const dbRef = ref(database);
+      const sections_cont = document.getElementById("sections_cont");
+
+      get(child(dbRef, "PARSEIT/administration/sections/" + yearvalue)).then(
+        (snapshot) => {
+          if (snapshot.exists()) {
+            let htmlstring = "";
+            snapshot.forEach((childSnapshot) => {
+              const sectioncode = childSnapshot.key;
+              const sectionteacher = childSnapshot.val().teacher;
+              htmlstring += `
                         <div class="sectionoptions">
                             <input type="radio" id="${sectioncode}" value="${sectionteacher}" name="section">
                             <a>${sectioncode}</a>: ${sectionteacher}
                         </div>`;
-                });
-                sections_cont.innerHTML = htmlstring; 
-                
-                snapshot.forEach((childSnapshot2) => {
-                    const sectioncode = childSnapshot2.key;
-                    const radioButton = document.getElementById(sectioncode);
-                    radioButton.addEventListener('click', (event) => {
-                        get(child(dbRef, "PARSEIT/administration/semester/students/" + yearvalue + "/" + sectioncode)).then((semesterSnapshot) => {
-                            let enrolledstudents = ""; // Move this outside the loop
-                            if (semesterSnapshot.exists()) {
-                                semesterSnapshot.forEach((enrollee) => {
-                                    const enrollees = enrollee.key;
-                                    enrolledstudents += `<div class="enrolled"><a>${enrollees}</a></div>`;
-                                });
-                            } else {
-                                enrolledstudents += `<div class="enrolled"><a>No student yet to be enrolled.</a></div>`;
-                            }
-                            document.getElementById('enrolledstudents').innerHTML = enrolledstudents; // Set innerHTML once
-                        });
+            });
+            sections_cont.innerHTML = htmlstring;
+
+            snapshot.forEach((childSnapshot2) => {
+              const sectioncode = childSnapshot2.key;
+              const radioButton = document.getElementById(sectioncode);
+              radioButton.addEventListener("click", (event) => {
+                get(
+                  child(
+                    dbRef,
+                    "PARSEIT/administration/semester/students/" +
+                      yearvalue +
+                      "/" +
+                      sectioncode
+                  )
+                ).then((semesterSnapshot) => {
+                  let enrolledstudents = ""; // Move this outside the loop
+                  if (semesterSnapshot.exists()) {
+                    semesterSnapshot.forEach((enrollee) => {
+                      const enrollees = enrollee.key;
+                      enrolledstudents += `<div class="enrolled"><a>${enrollees}</a></div>`;
                     });
+                  } else {
+                    enrolledstudents += `<div class="enrolled"><a>No student yet to be enrolled.</a></div>`;
+                  }
+                  document.getElementById("enrolledstudents").innerHTML =
+                    enrolledstudents; // Set innerHTML once
                 });
-            }
-        });
+              });
+            });
+          }
+        }
+      );
     }
 
+    document.getElementById("year1").addEventListener("click", (event) => {
+      getSem();
+      getYearLvl();
+      populateSections();
+    });
+    document.getElementById("year2").addEventListener("click", (event) => {
+      getSem();
+      getYearLvl();
+      populateSections();
+    });
+    document.getElementById("year3").addEventListener("click", (event) => {
+      getSem();
+      getYearLvl();
+      populateSections();
+    });
+    document.getElementById("year4").addEventListener("click", (event) => {
+      getSem();
+      getYearLvl();
+      populateSections();
+    });
 
-
-
-    document.getElementById('year1').addEventListener('click', (event) =>{
-        getSem();
-        getYearLvl();
-        populateSections();
-    })
-    document.getElementById('year2').addEventListener('click', (event) =>{
-        getSem();
-        getYearLvl();
-        populateSections();
-
-    })
-    document.getElementById('year3').addEventListener('click', (event) =>{
-        getSem();
-        getYearLvl();
-        populateSections();
-    
-    })
-    document.getElementById('year4').addEventListener('click', (event) =>{
-        getSem();
-        getYearLvl();
-        populateSections();
-        
-    })
-    
-    document.getElementById('startsemester').addEventListener('click', (event) => {
+    document
+      .getElementById("startsemester")
+      .addEventListener("click", (event) => {
         const dbRef = ref(database);
 
-        update(child(dbRef, "PARSEIT/administration/semester"),{
-            start: true
-        })
+        update(child(dbRef, "PARSEIT/administration/semester"), {
+          start: true,
+        });
 
         // get(child(dbRef, "PARSEIT/administration/semester")).then((snapshot) => {
         //     if (snapshot.exists()) {
@@ -199,61 +235,81 @@
         //         });
         //     }
         // });
-    });
+      });
 
-    document.getElementById('endsemester').addEventListener('click', (event) => {
+    document
+      .getElementById("endsemester")
+      .addEventListener("click", (event) => {
         const dbRef = ref(database);
 
-        update(child(dbRef, "PARSEIT/administration/semester"),{
-            start: false
-        })
-    });
-
+        update(child(dbRef, "PARSEIT/administration/semester"), {
+          start: false,
+        });
+      });
 
     function enrollstudent(data) {
-    const studentid = document.getElementById('txtstudentid').value;
+      const studentid = document.getElementById("txtstudentid").value;
 
-    // Loop through the subjects and add them one by one to the student entry
-    Object.keys(data).forEach(key => {
-        const value = data[key];  // Each subject or value you want to enroll
+      // Loop through the subjects and add them one by one to the student entry
+      Object.keys(data).forEach((key) => {
+        const value = data[key]; // Each subject or value you want to enroll
         const additionalValue = {
-            grade: 0,
-            section: selectedSection
-        }
+          grade: 0,
+          section: selectedSection,
+        };
         // Create a reference to the student's subjects node
-        const subjectRef = ref(database, "PARSEIT/administration/semester/students/" + yearvalue + "/" + selectedSection + "/" + studentid + "/subjects/" + key);
+        const subjectRef = ref(
+          database,
+          "PARSEIT/administration/semester/students/" +
+            yearvalue +
+            "/" +
+            selectedSection +
+            "/" +
+            studentid +
+            "/subjects/" +
+            key
+        );
 
         // Save the subject data under the student
-        set(subjectRef, value).then(() => {
+        set(subjectRef, value)
+          .then(() => {
             console.log("Subject " + key + " set successfully");
-        }).catch((error) => {
+          })
+          .catch((error) => {
             console.log("Error setting subject " + key + ": ", error);
-        });
+          });
 
-        update(subjectRef, additionalValue).then(() => {
+        update(subjectRef, additionalValue)
+          .then(() => {
             console.log("Subject " + key + " set successfully");
-        }).catch((error) => {
+          })
+          .catch((error) => {
             console.log("Error setting subject " + key + ": ", error);
-        });
-    });
-}
+          });
+      });
+    }
 
-document.getElementById('addtoclass').addEventListener('click', (event) => {
-    const dbRef = ref(database);
-    getSection();
-    get(child(dbRef, "PARSEIT/administration/programs/" + yearvalue + "/" + semvalue + "/")).then((snapshot) => {
-        if (snapshot.exists()) {
+    document.getElementById("addtoclass").addEventListener("click", (event) => {
+      const dbRef = ref(database);
+      getSection();
+      get(
+        child(
+          dbRef,
+          "PARSEIT/administration/programs/" + yearvalue + "/" + semvalue + "/"
+        )
+      )
+        .then((snapshot) => {
+          if (snapshot.exists()) {
             const data = snapshot.val();
             console.log(data);
             enrollstudent(data);
-        } else {
+          } else {
             console.log("NO DATA");
-        }
-    }).catch((error) => {
-        console.log("Error fetching data: ", error);
+          }
+        })
+        .catch((error) => {
+          console.log("Error fetching data: ", error);
+        });
     });
-});
-
-
-</script>
+  </script>
 </html>

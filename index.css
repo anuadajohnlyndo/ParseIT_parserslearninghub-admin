@@ -1,234 +1,218 @@
-
 @font-face {
-    font-family: "Inter-Regular" ;
-    src: url(assets/fonts/Inter-Regular.otf);
+  font-family: "Inter-Regular";
+  src: url(assets/fonts/Inter-Regular.otf);
 }
 @font-face {
-    font-family: "Inter-Medium" ;
-    src: url(assets/fonts/Inter-Medium.otf);
-}
-
-@font-face {
-    font-family: "Inter-Light" ;
-    src: url(assets/fonts/Inter-Light.otf);
-}
-@font-face {
-    font-family: "Inter-V" ;
-    src: url(assets/fonts/Inter-V.ttf);
-}
-@font-face {
-    font-family: "Inter-Bold" ;
-    src: url(assets/fonts/Inter-Bold.otf);
+  font-family: "Inter-Medium";
+  src: url(assets/fonts/Inter-Medium.otf);
 }
 
-*{
-    font-family: Inter-Regular;
-    font-size: 14px ;
-    color: #2E3845;
+@font-face {
+  font-family: "Inter-Light";
+  src: url(assets/fonts/Inter-Light.otf);
+}
+@font-face {
+  font-family: "Inter-V";
+  src: url(assets/fonts/Inter-V.ttf);
+}
+@font-face {
+  font-family: "Inter-Bold";
+  src: url(assets/fonts/Inter-Bold.otf);
+}
+
+* {
+  font-family: Inter-Regular;
+  font-size: 14px;
+  color: #2e3845;
 }
 
 /* LABELS */
 
-#admin_lbl{
-    font-family: "Inter-Medium" ;
-    font-size: 26px;
-    color: #000000;
+#admin_lbl {
+  font-family: "Inter-Medium";
+  font-size: 26px;
+  color: #000000;
 }
 
-
-body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow: hidden;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-
-
 
 .next_btn {
-    margin-top: 15px;
-    background: #EB3434;
-    border-radius: 8px;
-    border: 0;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    height: 50px; /* change button height */
-    transform-style: preserve-3d;
-    transition: all 150ms cubic-bezier(.175, .885, .32, 1.275);
-    width: 290px;
-    
-  }
-  
-  .next_btn::before {
-    background: #B02828;
-    border-radius: inherit;
-    box-shadow: 
-      0 0 0 2px #B02828,
-      0 .6em 0 0 rgba(#B02828, .6);
-    content: '';
-    height: 98%; /* change shadow height */
-    left: 0;
-    position: absolute;
-    top: 0;
-    transform: translate3d(0, .75em, -1em);
-    transition: all 150ms cubic-bezier(.175, .885, .32, 1.275);
-    width: 100%;
-  }
-  .next_btn:active {
-    background: #EB3434;
-    transform: translate(0, .75em);
-  }
-  .next_btn:active::before {
-    box-shadow: 
-      0 0 0 3px #EB3434,
-      0 0 #EB3434; 
-    transform: translate3d(0, 0, -1em);
-  }
-  
+  margin-top: 15px;
+  background: #eb3434;
+  border-radius: 8px;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  height: 50px; /* change button height */
+  transform-style: preserve-3d;
+  transition: all 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 290px;
+}
+
+.next_btn::before {
+  background: #b02828;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #b02828, 0 0.6em 0 0 rgba(#b02828, 0.6);
+  content: "";
+  height: 98%; /* change shadow height */
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translate3d(0, 0.75em, -1em);
+  transition: all 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100%;
+}
+.next_btn:active {
+  background: #eb3434;
+  transform: translate(0, 0.75em);
+}
+.next_btn:active::before {
+  box-shadow: 0 0 0 3px #eb3434, 0 0 #eb3434;
+  transform: translate3d(0, 0, -1em);
+}
 
 /* TEXTBOXES */
-.txtinput{
-    height: 35px;
-    background-color: transparent;
-    border: none;
-    font-size: 14px;
-    padding-left: 10px;
-    color: #2E3845;
-    
+.txtinput {
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  padding-left: 10px;
+  color: #2e3845;
 }
 
-.txtinput:focus{
-    
-    height: 35px;
-    background-color: transparent;
-    border: none;
-    font-size: 14px;
-    color: #000000;
-    outline: none;
-    text-decoration: none;
-    
+.txtinput:focus {
+  height: 35px;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  color: #000000;
+  outline: none;
+  text-decoration: none;
 }
 
-#main_container{
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: transparent;
+#main_container {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: transparent;
 }
 
-#upper_container{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 60px;   
-    background-color: #fefefe;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    
-    
+#upper_container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #fefefe;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-#functions_container, #reviewreports_container, #reviewqueries_container, #addadmin_container, #addstudent_container{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;   
-    background-color: #fefefe;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    display: none;
-}
-
-#reviewreports_container{
-    background-color: red;
-}
-#reviewqueries_container{
-    background-color: orange;
-}
-#addadmin_container{
-    background-color: yellow;
-}
-#addstudent_container{
-    width: 100%;
-    height: 100vh;
-    background-color: #fefefe;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: -85px;
-    
-
+#functions_container,
+#reviewreports_container,
+#reviewqueries_container,
+#addadmin_container,
+#addstudent_container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fefefe;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  display: none;
 }
 
-
-
-.options_container{
-    width: 100%;
-    height: 150px;
-    background-color: transparent;
-    margin: 1px;
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
+#reviewreports_container {
+  background-color: red;
+}
+#reviewqueries_container {
+  background-color: orange;
+}
+#addadmin_container {
+  background-color: yellow;
+}
+#addstudent_container {
+  width: 100%;
+  height: 100vh;
+  background-color: #fefefe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -85px;
 }
 
-
-.menu_container{
-    width: 160px;
-    height: 100%;
-    background-color: orange;
-    margin-left: 14px;
+.options_container {
+  width: 100%;
+  height: 150px;
+  background-color: transparent;
+  margin: 1px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.menu1_container{
-    width: 160px;
-    height: 100%;
-    background-color: red;
-    margin-right: 14px;
+.menu_container {
+  width: 160px;
+  height: 100%;
+  background-color: orange;
+  margin-left: 14px;
 }
 
-.menu2_container{
-    width: 160px;
-    height: 100%;
-    background-color: yellow;
-    margin-left: 14px;
+.menu1_container {
+  width: 160px;
+  height: 100%;
+  background-color: red;
+  margin-right: 14px;
 }
 
-.menu3_container{
-    width: 160px;
-    height: 100%;
-    background-color: green;
-    margin-right: 14px;
-}
-.menu5_container{
-    width: 160px;
-    height: 100%;
-    background-color: green;
-    margin-right: 14px;
+.menu2_container {
+  width: 160px;
+  height: 100%;
+  background-color: yellow;
+  margin-left: 14px;
 }
 
-.menu_border{
-    border-radius: 7px;
-    border: none;
-    background-color: transparent;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    z-index: 1;
-    position: relative;
+.menu3_container {
+  width: 160px;
+  height: 100%;
+  background-color: green;
+  margin-right: 14px;
+}
+.menu5_container {
+  width: 160px;
+  height: 100%;
+  background-color: green;
+  margin-right: 14px;
 }
 
-#menu_btn{
-    width: 18px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    margin-left: 15px;
-    margin-right: 9px;
-    
+.menu_border {
+  border-radius: 7px;
+  border: none;
+  background-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  z-index: 1;
+  position: relative;
+}
+
+#menu_btn {
+  width: 18px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  margin-left: 15px;
+  margin-right: 9px;
 }

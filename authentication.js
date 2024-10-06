@@ -52,9 +52,6 @@ signin.addEventListener("click", (event) => {
   var email = document.getElementById("username_txt").value;
   var password = document.getElementById("password_txt").value;
 
-  const credentials_mismatch_error = document.getElementById('credentials_mismatch_error');
-  credentials_mismatch_error.style.display = "none"; 
-
   const auth = getAuth();
   signInWithEmailAndPassword(auth, email, password).then((userCredentials) => {
     localStorage.setItem("user-parser", email);
